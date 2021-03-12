@@ -21,6 +21,7 @@ class Notify(object):
     :param COOL_PUSH_MODE: Cool Push的推送方式.可选私聊(send)、群组(group)或者微信(wx),默认: send
     :param BARK_KEY: Bark的IP或设备码.例如: https://api.day.app/xxxxxx
     :param BARK_SOUND: Bark的推送铃声.在APP内查看铃声列表,默认: healthnotification
+    :param TG_BOT_API: Telegram Bot的api地址, 用于反向使用代理Telegram API地址.
     :param TG_BOT_TOKEN: Telegram Bot的token.向bot father申请bot时生成.
     :param TG_USER_ID: Telegram推送对象的用户ID.
     :param DD_BOT_TOKEN: 钉钉机器人WebHook地址中access_token后的字段.
@@ -66,6 +67,7 @@ class Notify(object):
     BARK_KEY = ''
     BARK_SOUND = 'healthnotification'
     # Telegram Bot
+    TG_BOT_API = 'api.telegram.org'
     TG_BOT_TOKEN = ''
     TG_USER_ID = ''
     # DingTalk Bot
@@ -187,7 +189,10 @@ class Notify(object):
         if TG_BOT_TOKEN and TG_USER_ID:
             token = 'token'
 
-        url = f'https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage'
+        if 'TG_BOT_API' in os.environ:
+            TG_BOT_API = os.environ['TG_BOT_API']
+
+        url = f'https://{TG_BOT_API}/bot{TG_BOT_TOKEN}/sendMessage'
         data = {
             'chat_id': TG_USER_ID,
             'text': f'{text} {status}\n\n{desp}',
