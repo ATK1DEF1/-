@@ -189,6 +189,7 @@ class Notify(object):
         if TG_BOT_TOKEN and TG_USER_ID:
             token = 'token'
 
+        TG_BOT_API = self.TG_BOT_API
         if 'TG_BOT_API' in os.environ:
             TG_BOT_API = os.environ['TG_BOT_API']
 
