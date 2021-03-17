@@ -51,6 +51,7 @@ jobs:
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
           PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
           PUSH_CONFIG: ${{ secrets.PUSH_CONFIG }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt

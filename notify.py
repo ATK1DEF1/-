@@ -10,6 +10,7 @@ import hmac
 import hashlib
 import base64
 
+from discord_webhook import DiscordWebhook, DiscordEmbed
 from urllib import parse
 from settings import log, req
 
@@ -87,6 +88,8 @@ class Notify(object):
     PUSH_PLUS_USER = ''
     # Custom Push Config
     PUSH_CONFIG = ''
+    # Discord Webhook
+    DISCORD_WEBHOOK = ''
 
     def pushTemplate(self, method, url, params=None, data=None, json=None, headers=None, **kwargs):
         name = kwargs.get('name')
@@ -385,6 +388,23 @@ class Notify(object):
         else:
             return self.pushTemplate('post', url, data=data, name=name, token='token', text=text, code=code)
 
+    def discordWebhook(self, text, status, desp):
+        DISCORD_WEBHOOK = self.DISCORD_WEBHOOK
+        if 'DISCORD_WEBHOOK' in os.environ:
+            DISCORD_WEBHOOK = os.environ['DISCORD_WEBHOOK']
+        
+        if not DISCORD_WEBHOOK:
+            return log.info(f'Discord 🚫')
+
+        webhook = DiscordWebhook(url=DISCORD_WEBHOOK)
+        embed = DiscordEmbed(title=f'{text} {status}', description=desp, color='03b2f8')
+        webhook.add_embed(embed)
+        response = webhook.execute()
+        if (response.status_code == 200):
+            log.info(f'Discord 🥳')
+        else:
+            log.error(f'Discord 😳\n{response}')
+
     def send(self, **kwargs):
         app = '原神签到小助手'
         status = kwargs.get('status', '')
@@ -407,6 +427,7 @@ class Notify(object):
         self.iGot(app, status, msg)
         self.pushPlus(app, status, msg)
         self.custPush(app, status, msg)
+        self.discordWebhook(app, status, msg)
 
 
 if __name__ == '__main__':
