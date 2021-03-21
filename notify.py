@@ -36,7 +36,7 @@ class Notify(object):
     :param WW_APP_AGENTID: 企业微信应用的agentid.在'管理后台'->'应用与小程序'->'应用',点进某应用里查看.
     :param IGOT_KEY: iGot的KEY.例如: https://push.hellyw.com/xxxxxx
     :param PUSH_PLUS_TOKEN: pushplus一对一推送或一对多推送的token.
-        不配置PUSH_PLUS_USER则默认为一对一推送.详见文档: https://pushplus.hxtrip.com/
+        不配置PUSH_PLUS_USER则默认为一对一推送.详见文档: http://pushplus.plus/doc/
     :param PUSH_PLUS_USER: pushplus一对多推送的群组编码.
         在'一对多推送'->'您的群组'(如无则新建)->'群组编码'里查看,如果是创建群组人,也需点击“查看二维码”扫描绑定,否则不能接受群组消息.
     :param PUSH_CONFIG: JSON格式的自定义推送配置.
@@ -346,7 +346,7 @@ class Notify(object):
         if 'PUSH_PLUS_USER' in os.environ:
             PUSH_PLUS_USER = os.environ['PUSH_PLUS_USER']
 
-        url = 'https://pushplus.hxtrip.com/send'
+        url = 'http://www.pushplus.plus/send'
         data = {
             'token': PUSH_PLUS_TOKEN,
             'title': f'{text} {status}',
