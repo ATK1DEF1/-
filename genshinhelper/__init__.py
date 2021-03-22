@@ -3,3 +3,4 @@ from .config import Config
 from .genshin import *
 
 config = Config()
+

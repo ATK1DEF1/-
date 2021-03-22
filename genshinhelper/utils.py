@@ -1,11 +1,6 @@
 """Utilities."""
 
 import logging
-import json
-import hashlib
-import time
-import random
-import string
 
 import requests
 from requests.exceptions import HTTPError
@@ -85,3 +80,4 @@ MESSAGE_TEMPLATE = '''
 req = HttpRequest()
 CONFIG = _Config
 CONFIG.MESSAGE_TEMPLATE = MESSAGE_TEMPLATE
+

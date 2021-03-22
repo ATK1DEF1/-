@@ -232,3 +232,4 @@ class GenshinCheckin(__BaseCheckin):
             config.LANGUAGE, self._act_id)
         self._sign_url = 'https://hk4e-api-os.mihoyo.com/event/sol/sign?lang={}'.format(
             config.LANGUAGE)
+

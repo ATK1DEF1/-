@@ -94,13 +94,13 @@ class Config:
         if 'COOL_PUSH_MODE' in os.environ:
             self.COOL_PUSH_MODE = os.environ['COOL_PUSH_MODE']
         if 'BARK_KEY' in os.environ:
-            # customed server
+            # Customed server
             if os.environ['BARK_KEY'].find(
                     'https') != -1 or os.environ['BARK_KEY'].find('http') != -1:
                 self.BARK_KEY = os.environ['BARK_KEY']
             else:
                 self.BARK_KEY = f"https://api.day.app/{os.environ['BARK_KEY']}"
-        # official server
+        # Official server
         elif self.BARK_KEY and self.BARK_KEY.find('https') == -1 and self.BARK_KEY.find('http') == -1:
             self.BARK_KEY = f'https://api.day.app/{self.BARK_KEY}'
         if 'BARK_SOUND' in os.environ:
@@ -135,3 +135,4 @@ class Config:
             self.PUSH_PLUS_USER = os.environ['PUSH_PLUS_USER']
         if 'CUSTOM_PUSH_CONFIG' in os.environ:
             self.CUSTOM_PUSH_CONFIG = os.environ['CUSTOM_PUSH_CONFIG']
+
