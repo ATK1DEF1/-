@@ -1,21 +1,18 @@
 from urllib import parse
-from .basenotifier import BaseNotifier
 from genshinhelper import config
+
+from .basenotifier import BaseNotifier
 
 
 class Bark(BaseNotifier):
-    def send(self, text, status, desp):
+    def __init__(self):
+        self.name = 'Bark App'
+        self.token = config.BARK_KEY
+        self.retcode_key = 'code'
+        self.retcode_value = 200
 
+    def send(self, text, status, desp):
         url = f'{config.BARK_KEY}/{text} {status}/{parse.quote(desp)}'
         data = {'sound': config.BARK_SOUND}
-        name, token, retcode_key, retcode_value = [
-            'Bark App', config.BARK_KEY, 'code', 200
-        ]
-        return self.push(
-            'get',
-            url,
-            params=data,
-            name=name,
-            token=token,
-            retcode_key=retcode_key,
-            retcode_value=retcode_value)
+        return self.push('get', url, params=data)
+
