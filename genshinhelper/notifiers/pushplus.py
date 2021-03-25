@@ -1,8 +1,16 @@
+from genshinhelper import config
+
 from .basenotifier import BaseNotifier
 
 
 class PushPlus(BaseNotifier):
-    def notify(self, text, status, desp):
+    def __init__(self):
+        self.name = 'pushplus'
+        self.token = config.PUSH_PLUS_TOKEN
+        self.retcode_key = 'code'
+        self.retcode_value = 200
+        
+    def send(self, text, status, desp):
         from config import PUSH_PLUS_TOKEN, PUSH_PLUS_USER
 
         url = 'https://pushplus.hxtrip.com/send'
@@ -12,15 +20,5 @@ class PushPlus(BaseNotifier):
             'content': desp,
             'topic': PUSH_PLUS_USER
         }
-        name, token, retcode_key, retcode_value = [
-            'pushplus', PUSH_PLUS_TOKEN, 'code', 200
-        ]
-        return self.push(
-            'post',
-            url,
-            data=data,
-            name=name,
-            token=token,
-            retcode_key=retcode_key,
-            retcode_value=retcode_value)
+        return self.push('post', url, data=data)
 

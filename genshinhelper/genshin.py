@@ -188,7 +188,7 @@ class YuanshenCheckin(__BaseCheckin):
         self._sign_url = 'https://api-takumi.mihoyo.com/event/bbs_sign_reward/sign'
 
     @property
-    def get_ds(self):
+    def ds(self):
         # v2.3.0-web @povsister & @journey-ad
         n = 'h8w582wxwgqvahcdkpvdhbh2w9casgfl'
         i = str(int(time.time()))
@@ -207,7 +207,7 @@ class YuanshenCheckin(__BaseCheckin):
             # 5:  mobile web
             'x-rpc-client_type': '5',
             'x-rpc-app_version': self._app_version,
-            'DS': self.get_ds
+            'DS': self.ds
         })
         return header
 

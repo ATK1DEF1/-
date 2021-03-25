@@ -1,9 +1,17 @@
+from genshinhelper import config
+
 from .basenotifier import BaseNotifier
 from ..utils import log, to_python
 
 
 class CustomNotifier(BaseNotifier):
-    def notify(self, text, status, desp):
+    def __init__(self):
+        self.name = 'Bark App'
+        self.token = config.BARK_KEY
+        self.retcode_key = 'code'
+        self.retcode_value = 200
+    
+    def send(self, text, status, desp):
         from config import PUSH_CONFIG
 
         if not PUSH_CONFIG:

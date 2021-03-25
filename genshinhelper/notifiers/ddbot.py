@@ -3,11 +3,19 @@ import hmac
 import hashlib
 import base64
 from urllib import parse
+from genshinhelper import config
+
 from .basenotifier import BaseNotifier
 
 
 class DdBot(BaseNotifier):
-    def notify(self, text, status, desp):
+    def __init__(self):
+        self.name = 'Bark App'
+        self.token = config.BARK_KEY
+        self.retcode_key = 'code'
+        self.retcode_value = 200
+        
+    def send(self, text, status, desp):
         from config import DD_BOT_TOKEN, DD_BOT_SECRET
 
         url = ''

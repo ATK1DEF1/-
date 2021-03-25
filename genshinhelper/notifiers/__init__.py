@@ -1,7 +1,16 @@
+#from .bark import Bark
+from . import (
+    bark,
+    telegrambot
+)
 
-from .bark import Bark
 
+_all_notifiers = {
+    'bark': bark.Bark,
+    'telegrambot': telegrambot.TelegramBot,
+}
 
-'''from . import basenotifier, serverchan
-from config import SCKEY'''
-''
+def send(text, status, desp):
+    for notifier in _all_notifiers.values():
+        notifier().send(text, status, desp)
+

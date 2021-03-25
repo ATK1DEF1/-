@@ -21,7 +21,7 @@ class Config:
 
     def __init__(self):
         # Open and read the config file
-        CONFIG_DIR = './config.json'
+        CONFIG_DIR = '../config.json'
         with open(CONFIG_DIR, 'r', encoding='utf-8') as f:
             config_json = json.load(f)
 

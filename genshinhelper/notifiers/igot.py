@@ -1,19 +1,20 @@
+from genshinhelper import config
+
 from .basenotifier import BaseNotifier
 
 
 class Igot(BaseNotifier):
-    def notify(self, text, status, desp):
-        from config import IGOT_KEY
-
-        url = f'https://push.hellyw.com/{IGOT_KEY}'
-        data = {'title': f'{text} {status}', 'content': desp}
-        name, token, retcode_key, retcode_value = ['iGot', IGOT_KEY, 'ret', 0]
-        return self.push(
-            'post',
-            url,
-            data=data,
-            name=name,
-            token=token,
-            retcode_key=retcode_key,
-            retcode_value=retcode_value)
+    def __init__(self):
+        self.name = 'iGot'
+        self.token = config.IGOT_KEY
+        self.retcode_key = 'ret'
+        self.retcode_value = 0
+        
+    def send(self, text, status, desp):
+        url = f'https://push.hellyw.com/{config.IGOT_KEY}'
+        data = {
+            'title': f'{text} {status}', 
+            'content': desp
+        }
+        return self.push('post', url, data=data)
 
