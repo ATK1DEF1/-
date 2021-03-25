@@ -66,6 +66,7 @@ def _data_handler(func):
                 raise Exception(e)
             self._sign_data['post_data'] = {'act_id': self._act_id}
             return func(self, *args, **kwargs)
+
     return wrapper
 
 
@@ -75,6 +76,13 @@ class __BaseCheckin(object):
         self._sign_info = {}
         self._rewards_info = {}
         self._sign_data = {}
+
+        self._user_agent = ''
+        self._referer = ''
+        self._roles_info = ''
+        self._info_url = ''
+        self._reward_url = ''
+        self._sign_url = ''
         self._init_sign_config()
 
     def _init_sign_config(self):
@@ -232,4 +240,3 @@ class GenshinCheckin(__BaseCheckin):
             config.LANGUAGE, self._act_id)
         self._sign_url = 'https://hk4e-api-os.mihoyo.com/event/sol/sign?lang={}'.format(
             config.LANGUAGE)
-
