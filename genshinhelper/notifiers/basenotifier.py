@@ -3,12 +3,12 @@ from ..utils import log, req
 
 class BaseNotifier(object):
     def __init__(self):
-        self.name = ''
-        self.token = ''
-        self.retcode_key = ''
-        self.retcode_value = ''
+        self.name = None
+        self.token = None
+        self.retcode_key = None
+        self.retcode_value = None
 
-    def send(self, text, status, desp):
+    def send(self, text='Genshin Impact Helper', status='status', desp='desp'):
         ...
 
     def push(self,
@@ -17,8 +17,7 @@ class BaseNotifier(object):
              params=None,
              data=None,
              json=None,
-             headers=None,
-             **kwargs):
+             headers=None):
         """
         🚫: disabled; 🥳:success; 😳:failure
         """
@@ -26,8 +25,7 @@ class BaseNotifier(object):
             log.info(f'{self.name} 🚫')
             return
         try:
-            response = req.request(method, url, 2, params, data, json,
-                                   headers).json()
+            response = req.request(method, url, 2, params, data, json, headers).json()
         except Exception as e:
             log.error(f'{self.name} 😳\n{e}')
         else:
@@ -37,11 +35,9 @@ class BaseNotifier(object):
             # Telegram Bot
             elif self.name == 'Telegram Bot' and retcode:
                 log.info(f'{self.name} 🥳')
-            elif self.name == 'Telegram Bot' and response[self.
-                                                          retcode_value] == 400:
+            elif self.name == 'Telegram Bot' and response[self.retcode_value] == 400:
                 log.error(f'{self.name} 😳\n请主动给 bot 发送一条消息并检查 TG_USER_ID 是否正确')
-            elif self.name == 'Telegram Bot' and response[self.
-                                                          retcode_value] == 401:
+            elif self.name == 'Telegram Bot' and response[self.retcode_value] == 401:
                 log.error(f'{self.name} 😳\nTG_BOT_TOKEN 错误')
             else:
                 log.error(f'{self.name} 😳\n{response}')
