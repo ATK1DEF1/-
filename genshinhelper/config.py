@@ -8,8 +8,8 @@ otherwise it is invalid!!!
 e.g. Name=COOKIE, Value=<cookie>
 """
 
-import os
 import json
+import os
 
 
 class Config:
@@ -69,8 +69,8 @@ class Config:
         # pushplus
         self.PUSH_PLUS_TOKEN = config_json['PUSH_PLUS_TOKEN']
         self.PUSH_PLUS_USER = config_json['PUSH_PLUS_USER']
-        # Custom Push Config
-        self.CUSTOM_PUSH_CONFIG = config_json['CUSTOM_PUSH_CONFIG']
+        # Custom Notifier Config
+        self.CUSTOM_NOTIFIER = config_json['CUSTOM_NOTIFIER']
 
         # Get configuration from user's environment variables
         if 'LANGUAGE' in os.environ:
@@ -135,4 +135,3 @@ class Config:
             self.PUSH_PLUS_USER = os.environ['PUSH_PLUS_USER']
         if 'CUSTOM_PUSH_CONFIG' in os.environ:
             self.CUSTOM_PUSH_CONFIG = os.environ['CUSTOM_PUSH_CONFIG']
-

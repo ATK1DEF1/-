@@ -24,7 +24,7 @@
   "IGOT_KEY": "",
   "PUSH_PLUS_TOKEN": "",
   "PUSH_PLUS_USER": "",
-  "CUSTOM_PUSH_CONFIG": {
+  "CUSTOM_NOTIFIER": {
     "method": "post",
     "url": "",
     "data": {},

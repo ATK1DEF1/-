@@ -1,6 +1,6 @@
 from urllib import parse
-from genshinhelper import config
 
+from genshinhelper import config
 from .basenotifier import BaseNotifier
 
 
@@ -11,8 +11,7 @@ class Bark(BaseNotifier):
         self.retcode_key = 'code'
         self.retcode_value = 200
 
-    def send(self, text, status, desp):
+    def send(self, text='Genshin Impact Helper', status='status', desp='desp'):
         url = f'{config.BARK_KEY}/{text} {status}/{parse.quote(desp)}'
         data = {'sound': config.BARK_SOUND}
         return self.push('get', url, params=data)
-

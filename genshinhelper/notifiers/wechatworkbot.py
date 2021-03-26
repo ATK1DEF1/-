@@ -9,8 +9,8 @@ class WechatWorkBot(BaseNotifier):
         self.token = config.WW_BOT_KEY
         self.retcode_key = 'errcode'
         self.retcode_value = 0
-        
-    def send(self, text, status, desp):
+
+    def send(self, text='Genshin Impact Helper', status='status', desp='desp'):
         url = f'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={config.WW_BOT_KEY}'
         data = {
             'msgtype': 'text',
@@ -19,4 +19,3 @@ class WechatWorkBot(BaseNotifier):
             }
         }
         return self.push('post', url, json=data)
-

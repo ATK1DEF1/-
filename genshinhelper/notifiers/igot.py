@@ -9,12 +9,11 @@ class Igot(BaseNotifier):
         self.token = config.IGOT_KEY
         self.retcode_key = 'ret'
         self.retcode_value = 0
-        
-    def send(self, text, status, desp):
+
+    def send(self, text='Genshin Impact Helper', status='status', desp='desp'):
         url = f'https://push.hellyw.com/{config.IGOT_KEY}'
         data = {
-            'title': f'{text} {status}', 
+            'title': f'{text} {status}',
             'content': desp
         }
         return self.push('post', url, data=data)
-

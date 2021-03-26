@@ -9,16 +9,13 @@ class PushPlus(BaseNotifier):
         self.token = config.PUSH_PLUS_TOKEN
         self.retcode_key = 'code'
         self.retcode_value = 200
-        
-    def send(self, text, status, desp):
-        from config import PUSH_PLUS_TOKEN, PUSH_PLUS_USER
 
+    def send(self, text='Genshin Impact Helper', status='status', desp='desp'):
         url = 'https://pushplus.hxtrip.com/send'
         data = {
-            'token': PUSH_PLUS_TOKEN,
+            'token': config.PUSH_PLUS_TOKEN,
             'title': f'{text} {status}',
             'content': desp,
-            'topic': PUSH_PLUS_USER
+            'topic': config.PUSH_PLUS_USER
         }
         return self.push('post', url, data=data)
-
