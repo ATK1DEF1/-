@@ -42,8 +42,14 @@ nosetests.xml
 .DS_Store
 *.pkl
 
-# venv
-.venv/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # Cookiecutter
 output/
