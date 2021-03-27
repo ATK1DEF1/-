@@ -1,5 +1,5 @@
 简体中文 | [English](./README.en-US.md)
-<div align="center"> 
+<div align="center">
 <h1 align="center">Genshin Impact Helper</h1>
 
 ![Genshin Impact Helper](https://i.loli.net/2020/11/18/3zogEraBFtOm5nI.jpg)
@@ -12,7 +12,7 @@
 
 </div>
 
-## 已支持国际版签到 HoYoLAB Community daily check-in is supported 
+## 已支持国际版签到 HoYoLAB Community daily check-in is supported
 
 ## 💭前言
 
@@ -110,7 +110,7 @@ if (ask == true) {
 > Actions 默认为关闭状态，Fork 之后需要手动执行一次，若成功运行其才会激活。
 
 返回项目主页面，点击上方的`Actions`，再点击左侧的`Genshin Impact Helper`，再点击`Run workflow`
-    
+
 ![run](https://i.loli.net/2020/10/28/5ylvgdYf9BDMqAH.png)
 
 </details>
@@ -208,15 +208,15 @@ if (ask == true) {
 
 以Server酱为例：
 
-**a.获取 SCKEY**
+**a.获取 SendKey**
 
-- 使用 GitHub 登录 [sc.ftqq.com](http://sc.ftqq.com/?c=github&a=login) 创建账号
-- 点击「[发送消息](http://sc.ftqq.com/?c=code)」，获取`SCKEY`
-- 点击「[微信推送](http://sc.ftqq.com/?c=wechat&a=bind)」，完成微信绑定
+- 进入「[Server酱](https://sct.ftqq.com/)」点击右上角登入微信扫码登录
+- 点击「[消息通道](https://sct.ftqq.com/forward)」根据页面提示完成配置
+- 点击「[SendKey](https://sct.ftqq.com/sendkey)」获取`SendKey`
 
-**b.添加 SCKEY 到 Secrets**
+**b.添加 SendKey 到 Secrets**
 
-- 建立名为`SCKEY`的 secret，并添加获取的 SCKEY 值，即可开启Server酱推送
+- 建立名为`SCKEY`的 secret，并添加获取的 `SendKey` 值，即可开启Server酱推送
 
 #### 自定义推送
 

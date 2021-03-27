@@ -17,7 +17,7 @@ from settings import log, req
 
 class Notify(object):
     """Push all in one
-    :param SCKEY: Server酱的SCKEY.详见文档: https://sc.ftqq.com/
+    :param SCKEY: Server酱的SCKEY.详见文档: https://sct.ftqq.com/
     :param COOL_PUSH_SKEY: Cool Push的SKEY.详见文档: https://cp.xuthus.cc/
     :param COOL_PUSH_MODE: Cool Push的推送方式.可选私聊(send)、群组(group)或者微信(wx),默认: send
     :param BARK_KEY: Bark的IP或设备码.例如: https://api.day.app/xxxxxx
@@ -126,11 +126,18 @@ class Notify(object):
         if 'SCKEY' in os.environ:
             SCKEY = os.environ['SCKEY']
 
-        url = f'https://sc.ftqq.com/{SCKEY}.send'
-        data = {
-            'text': f'{text} {status}',
-            'desp': desp
-        }
+        if SCKEY.startswith('SCU'):
+            url = f'https://sc.ftqq.com/{SCKEY}.send'
+            data = {
+                'text': f'{text} {status}',
+                'desp': desp
+            }
+        else:
+            url = f'https://sctapi.ftqq.com/{SCKEY}.send'
+            data = {
+                'title': f'{text} {status}',
+                'desp': desp
+            }
         conf = ['Server酱', 'SCKEY', SCKEY, 'errno', 0]
         name, needs, token, text, code  = conf
 
@@ -392,7 +399,7 @@ class Notify(object):
         DISCORD_WEBHOOK = self.DISCORD_WEBHOOK
         if 'DISCORD_WEBHOOK' in os.environ:
             DISCORD_WEBHOOK = os.environ['DISCORD_WEBHOOK']
-        
+
         if not DISCORD_WEBHOOK:
             return log.info(f'Discord 🚫')
 
@@ -432,4 +439,3 @@ class Notify(object):
 
 if __name__ == '__main__':
     Notify().send(app='原神签到小助手', status='签到状态', msg='内容详情')
-
